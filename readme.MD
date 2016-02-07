@@ -9,5 +9,5 @@
 
 - build with maven on JDK 1.8
 - take target/build/BCFormats.bcpkg and import it to Beyond Compare
-- for your convenience you find the binaries [here](BCFormats.bcpkg)
+- for your convenience you find the binaries [here](blob/master/BCFormats.bcpkg)
 

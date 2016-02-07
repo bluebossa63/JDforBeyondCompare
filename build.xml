@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project JDforBeyondCompare with Jar-in-Jar Loader">
+    <!--this file was created by Eclipse Runnable JAR file Export Wizard-->
+    <!--ANT 1.7 is required-->
+    <!--define folder properties-->
+    <property name="dir.buildfile" value="."/>
+    <property name="dir.workspace" value="${dir.buildfile}/.."/>
+    <property name="dir.jarfile" value="${dir.buildfile}/target/build"/>
+    <target name="create_run_jar">
+        <jar destfile="${dir.jarfile}/jd-decompiler.jar">
+            <manifest>
+                <attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
+                <attribute name="Rsrc-Main-Class" value="ch.niceneasy.jd.Main"/>
+                <attribute name="Class-Path" value="."/>
+                <attribute name="Rsrc-Class-Path" value="./ jd-common-0.7.1.jar jd-common-ide-0.7.1.jar jd-core-0.7.1.jar"/>
+            </manifest>
+            <zipfileset src="jar-in-jar-loader.zip"/>
+            <fileset dir="${dir.buildfile}/target/classes"/>
+            <zipfileset dir="${dir.buildfile}/lib" includes="jd-common-0.7.1.jar"/>
+            <zipfileset dir="${dir.buildfile}/lib" includes="jd-common-ide-0.7.1.jar"/>
+            <zipfileset dir="${dir.buildfile}/lib" includes="jd-core-0.7.1.jar"/>
+        </jar>
+        <zip destfile="${dir.jarfile}/BCFormats.bcpkg">
+            <zipfileset dir="${dir.jarfile}" includes="jd-decompiler.jar"  prefix="Helpers/Java"/>
+        	<fileset dir="${dir.buildfile}/src/main/bcpkg"/>
+        </zip>
+    </target>
+</project>
